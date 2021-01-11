@@ -9,7 +9,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-light">
+    <div class="container">
+      <div class="py-5 text-center">
+        <%= image_tag('weather-icon.png', class: 'd-block mx-auto mb-4', width: "72", height: "72") %>
+        <h2>Weather Search</h2>
+        <p class="lead">Easily search a zip code to see real-time weather information!</p>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
