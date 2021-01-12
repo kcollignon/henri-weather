@@ -1,6 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 
-.list-group-item {
+.list-group-item, .breadcrumb-item {
   &:hover {
     cursor: pointer;
   }

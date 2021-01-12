@@ -10,8 +10,8 @@ export default class extends Controller {
   connect() {
   }
 
-  getWeather(zip) {
-    fetch(`/weather/search?zip_code=${zip}`, {
+  getWeather(zip, units = 'imperial') {
+    fetch(`/weather/search?zip_code=${zip}&units=${units}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/html',
@@ -37,5 +37,19 @@ export default class extends Controller {
   searchSavedWeather(event) {
     var zip = $(event.currentTarget).data('id');
     this.getWeather(zip);
+  }
+
+  toggleFarenheit(event) {
+    event.preventDefault();
+    var zip = $(event.currentTarget).data('id');
+    event.currentTarget.parentElement.classList.toggle('active');
+    this.getWeather(zip, 'imperial');
+  }
+
+  toggleCelcius(event) {
+    event.preventDefault();
+    var zip = $(event.currentTarget).data('id');
+    event.currentTarget.parentElement.classList.toggle('active');
+    this.getWeather(zip, 'metric');
   }
 }
