@@ -1,0 +1,58 @@
+<div data-controller="saved-location">
+  <h4 data-saved-location-target="name"><%= @result.payload["name"] %></h4>
+  <div data-saved-location-target="zip" id="zipCode" style="display: none;"><%= @zip_code %></div>
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Low</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title"><%= @result.payload["main"]["temp_min"].round %> <span class="text-muted">°</span></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>🌅Sunrise <%= Time.at(@result.payload["sys"]["sunrise"]).in_time_zone('Arizona').strftime('%l:%M %p') %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Current Temp</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title"><%= @result.payload["main"]["temp"].round %> <span class="text-muted">°</span></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li><%= @result.payload["weather"][0]["main"] %></li>
+          <li><i>average temp <%= average_daily_temperature(@result.payload["main"]["temp_max"].round, @result.payload["main"]["temp_min"].round) %>°</i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">High</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title"><%= @result.payload["main"]["temp_max"].round %> <span class="text-muted">°</span></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>🌇 Sunset <%= Time.at(@result.payload["sys"]["sunset"]).in_time_zone('Arizona').strftime('%l:%M %p') %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+      <button class="btn btn-link" id="saveSearch" data-action="click->saved-location#save">+ Save This Search</button>
+    </div>
+    <div class="col-md-2">
+      <nav aria-label="breadcrumb" style="text-align: center;">
+        <ol class="breadcrumb" style="text-align: center;">
+          <li class="breadcrumb-item <%= @units == 'metric' ? 'active' : '' %>">
+            <span data-action="click->search#toggleFarenheit" data-id="<%= @zip_code %>" href="#">°F</span>
+          </li>
+          <li class="breadcrumb-item <%= @units == 'imperial' ? 'active' : '' %>" aria-current="page">
+            <span data-action="click->search#toggleCelcius" data-id="<%= @zip_code %>" href="#">°C</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.openweathermap.org/data/2.5/weather?appid=74415166f0dba1ca96bc8f7aced9df0c&units=imperial&zip=85085
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Tue, 12 Jan 2021 06:39:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '454'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?units=imperial&zip=85085"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":-112.0893,"lat":33.7529},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"base":"stations","main":{"temp":47.8,"feels_like":37.74,"temp_min":45,"temp_max":50,"pressure":1024,"humidity":25},"visibility":10000,"wind":{"speed":8.05,"deg":40},"clouds":{"all":1},"dt":1610433433,"sys":{"type":1,"id":3882,"country":"US","sunrise":1610375612,"sunset":1610411935},"timezone":-25200,"id":0,"name":"Phoenix","cod":200}'
+  recorded_at: Tue, 12 Jan 2021 06:39:16 GMT
+recorded_with: VCR 6.0.0

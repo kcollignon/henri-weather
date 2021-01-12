@@ -1,0 +1,29 @@
+<div class="row" data-controller="search">
+  <div class="col-md-4 order-md-2 mb-4">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted">Your Saved Locations</span>
+    </h4>
+    <ul class="list-group mb-3" id="savedLocations">
+      <% @saved_locations.each do |location| %>
+        <%= render partial: 'saved_locations/location', locals: {location: location} %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Enter Zip Code</h4>
+    <%= form_tag 'search', remote: true, data: {search_url: '/weather/search'} do %>
+      <div class="row">
+        <div class="col-md-7 mb-3">
+          <div class="input-group mb-3">
+            <input type="text" data-search-target="searchTerm" class="form-control form-control-lg" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button data-action="click->search#searchWeather" class="btn btn-primary" type="button">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <hr>
+    <div data-search-target="searchResults"></div>
+  </div>
+</div>
