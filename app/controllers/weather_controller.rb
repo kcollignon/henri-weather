@@ -1,10 +1,12 @@
 class WeatherController < ApplicationController
 
   def index
+    @saved_locations = SavedLocation.all
   end
 
   def search
-    @result = WeatherServices::RetrieveWeather.new({endpoint: 'weather', zip_code: params[:zip_code], units: 'imperial'}).call
+    @zip_code = params[:zip_code]
+    @result = WeatherServices::RetrieveWeather.new({endpoint: 'weather', zip_code: @zip_code, units: 'imperial'}).call
     if @result && @result.success?
       render :search, layout: false
     else

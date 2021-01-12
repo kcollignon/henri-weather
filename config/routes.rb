@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'weather#index'
 
   get '/weather/search' => 'weather#search'
+  resources :saved_locations, only: [:create, :destroy]
 end

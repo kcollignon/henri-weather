@@ -2,16 +2,11 @@
   <div class="col-md-4 order-md-2 mb-4">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-muted">Your Saved Locations</span>
-      <span class="badge badge-secondary badge-pill">3</span>
     </h4>
-    <ul class="list-group mb-3">
-      <li class="list-group-item d-flex justify-content-between lh-condensed">
-        <div>
-          <h6 class="my-0">Las Vegas</h6>
-          <small class="text-muted">89117</small>
-        </div>
-        <span class="text-muted">View</span>
-      </li>
+    <ul class="list-group mb-3" id="savedLocations">
+      <% @saved_locations.each do |location| %>
+        <%= render partial: 'saved_locations/location', locals: {location: location} %>
+      <% end %>
     </ul>
   </div>
   <div class="col-md-8 order-md-1">
@@ -22,28 +17,13 @@
           <div class="input-group mb-3">
             <input type="text" data-search-target="searchTerm" class="form-control form-control-lg" aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button data-action="click->search#getWeather" class="btn btn-primary" type="button">Search</button>
+              <button data-action="click->search#searchWeather" class="btn btn-primary" type="button">Search</button>
             </div>
           </div>
         </div>
       </div>
     <% end %>
     <hr>
-    <div data-search-target="searchResults">
-
-    </div>
-    <div class="row">
-      <div class="col-md-10">
-        <%= link_to '+ Save This Search', '#', class: 'btn btn-link' %>
-      </div>
-      <div class="col-md-2">
-        <nav aria-label="breadcrumb" style="text-align: center;">
-          <ol class="breadcrumb" style="text-align: center;">
-            <li class="breadcrumb-item"><a href="#">°F</a></li>
-            <li class="breadcrumb-item active" aria-current="page">°C</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
+    <div data-search-target="searchResults"></div>
   </div>
 </div>

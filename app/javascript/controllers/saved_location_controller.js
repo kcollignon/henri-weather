@@ -3,25 +3,25 @@ import Rails from "@rails/ujs";
 
 export default class extends Controller {
   // Read more about targets in the Stimulus reference guide: https://stimulusjs.org/reference/targets
-  static targets = ["searchTerm", "searchResults"]
+  static targets = ["zip", "name"]
 
   // The connect lifecycle method runs each time our controller is connected to the DOM
   // Read more about lifecycle methods in the Stimulus reference guide: https://stimulusjs.org/reference/lifecycle-callbacks
   connect() {
   }
 
-  getWeather(zip) {
-    fetch(`/weather/search?zip_code=${zip}`, {
-      method: 'GET',
+  save() {
+    fetch(`/saved_locations?saved_location[zip_code]=${this.zipTarget.innerHTML}&saved_location[name]=${this.nameTarget.innerHTML}`, {
+      method: 'POST',
       headers: {
-        'Accept': 'application/html',
-        'Content-Type': 'application/html'
+        'Accept': 'application/javascript',
+        'Content-Type': 'application/javascript'
       }
     })
     .then((response) => response.text())
     .then((html) => {
-      this.searchResultsTarget.innerHTML = html;
-      this.searchTermTarget.value = '';
+      $('#savedLocations').prepend(html);
+      $('#saveSearch').text("Saved!");
     }
     )
     .catch((error) => {
@@ -29,13 +29,5 @@ export default class extends Controller {
     });
   }
 
-  searchWeather() {
-    var zip = this.searchTermTarget.value;
-    this.getWeather(zip)
-  }
 
-  searchSavedWeather(event) {
-    var zip = $(event.currentTarget).data('id');
-    this.getWeather(zip);
-  }
 }
