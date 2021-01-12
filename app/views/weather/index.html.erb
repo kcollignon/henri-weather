@@ -17,7 +17,7 @@
   </div>
   <div class="col-md-8 order-md-1">
     <h4 class="mb-3">Enter Zip Code</h4>
-    <form class="needs-validation" novalidate>
+    <form>
       <div class="row">
         <div class="col-md-7 mb-3">
           <div class="input-group mb-3">
@@ -29,5 +29,57 @@
         </div>
       </div>
     </form>
+    <hr>
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Low</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">46 <span class="text-muted">°</span></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>5% humidity</li>
+              <li>Sunrise 5:54 am</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Current Temp</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">63 <span class="text-muted">°</span></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>5% humidity</li>
+              <li>Sunrise 5:54 am</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">High</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">73 <span class="text-muted">°</span></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>5% humidity</li>
+              <li>Sunrise 5:54 am</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <%= link_to '+ Save This Search', '#', class: 'btn btn-link' %>
+        </div>
+        <div class="col-md-2">
+          <nav aria-label="breadcrumb" style="text-align: center;">
+            <ol class="breadcrumb" style="text-align: center;">
+              <li class="breadcrumb-item"><a href="#">°F</a></li>
+              <li class="breadcrumb-item active" aria-current="page">°C</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
   </div>
 </div>
