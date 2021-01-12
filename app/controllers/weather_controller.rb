@@ -11,7 +11,7 @@ class WeatherController < ApplicationController
     if @result && @result.success?
       render :search, layout: false
     else
-      render status: 500
+      render :error, layout: false
     end
   end
 end

@@ -15,7 +15,7 @@ module WeatherServices
     rescue HTTParty::Error => e
       OpenStruct.new({success?: false, error: e})
     else
-      OpenStruct.new({success?: true, payload: result.parsed_response})
+      result.code == 404 ? OpenStruct.new({success?: false, error: "Invalid request. Please enter a valid Zip Code."}) : OpenStruct.new({success?: true, payload: result.parsed_response})
     end
 
     private

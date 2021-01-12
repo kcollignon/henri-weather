@@ -29,7 +29,17 @@ RSpec.describe WeatherController, :type => :controller do
       end
       expect(response.status).to eq 200
       expect(assigns(:result))
+      expect(assigns(:result).success?).to be true
       expect(assigns(:result).payload["main"]["temp"]).not_to be_nil
+    end
+
+    it "returns error" do
+      VCR.use_cassette("badsearch") do
+        get :search, params: { zip_code: '12dsfdszx' }
+      end
+      expect(response.status).to eq 200
+      expect(assigns(:result))
+      expect(assigns(:result).success?).to be false
     end
   end
 end
